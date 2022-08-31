@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>SDR(软件定义无线电) on CaCl2&#39;s Space</title>
+        <link>https://example.com/categories/sdr%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/</link>
+        <description>Recent content in SDR(软件定义无线电) on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 03 Apr 2022 13:48:26 +0000</lastBuildDate><atom:link href="https://example.com/categories/sdr%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>接收JMH气象传真</title>
+        <link>https://example.com/%E6%8E%A5%E6%94%B6jmh%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/</link>
+        <pubDate>Sun, 03 Apr 2022 13:48:26 +0000</pubDate>
+        
+        <guid>https://example.com/%E6%8E%A5%E6%94%B6jmh%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/</guid>
+        <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;清明假期闲得无聊，把小环天线架在了窗外，正好赶上下午传播来了，便尝试收了一下JMH的气象传真。效果图如下。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+&lt;p&gt;需要的软件有：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;VAC虚拟声卡&lt;/a&gt; 用于将音频输出loopback至音频输入。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KG-FAX&lt;/a&gt; 用于气象传真的解码。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Ntleas转码软件&lt;/a&gt; 由于KG-FAX编码是 Shift-JIS 不适配简体中文系统 因此使用该软件进行转码。&lt;strong&gt;（可选，Windows10可以正常打开KG-FAX，如果不想有乱码就用这个，无所谓的话可以直接打开）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其他条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一根短波天线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;较好的传播及接收环境&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里博主使用了有源小环天线进行接收，这款天线在0.1MHz-180MHz的频段有着不俗的表现。SDR接收机使用了前几篇文章出场过的&lt;!-- raw HTML omitted --&gt;祖国版&lt;!-- raw HTML omitted --&gt;SdrPlay RSP1A。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;开始接收&#34;&gt;开始接收&lt;/h2&gt;
+&lt;h3 id=&#34;虚拟声卡配置&#34;&gt;虚拟声卡配置&lt;/h3&gt;
+&lt;p&gt;首先进行虚拟声卡的配置，首先安装VAC虚拟声卡软件，安装完成后打开Windows的声音设置，将默认输入设备改成”&lt;em&gt;Line 1(Virtual Audio Cable)&lt;/em&gt;“&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;频率调整&#34;&gt;频率调整&lt;/h3&gt;
+&lt;p&gt;得益于博主强大的情报网，我搞到了一份美国国家海洋和大气管理局编写的&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;全球气象传真频率表&lt;/a&gt;，查询后得知，JMH分别在3622.5 kHz 7795kHz和13988.5kHz 24h全天候播发，博主在根据自身条件在这里选择了在13988.5kHz接收，由于使用USB上边带模式接收，调整好对应频差后即为在13986.6kHz接收。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;随后将SDRuno的输出设备改为之前配置的虚拟声卡。如果是SDRuno，点击RX CONTROL面板的SETT.，在OUT中选择”&lt;em&gt;Line 1(Virtual Audio Cable)&lt;/em&gt;“，重新开始即可。&lt;/p&gt;
+&lt;h3 id=&#34;开始解码&#34;&gt;开始解码&lt;/h3&gt;
+&lt;p&gt;使用Ntleas打开KG-FAX，可以在左边看到三个按钮。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;点击“掃引”按钮立即开始图像的解码。点击“自動制御”将会在接收到开始信号后才开始解码，如果图像此时已经传送了一半便无法解码，适用于想要接收一张完整传真的场景。点击“自动保存”按钮后可以设置图像解码完成后的保存路径。&lt;/p&gt;
+&lt;p&gt;随后软件就会开始自动解码，片刻后一张FAX传真就会完成。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        <item>
+        <title>树莓派＋RTLSDR搭建ADS-B监测站点</title>
+        <link>https://example.com/raspi-adsb-station/</link>
+        <pubDate>Thu, 24 Mar 2022 06:24:18 +0000</pubDate>
+        
+        <guid>https://example.com/raspi-adsb-station/</guid>
+        <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;近期中国东方航空MU5735航班发生事故坠毁，痛心之余不知大家是否注意到，各大媒体都不约而同地引用了这样一张数据图：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这张图中清晰地显示了东航MU5735在坠落前的速度，高度等数据。飞机已经损毁到如此程度，这些数据又是怎么保存下来的呢？这便用到了我们今天所要介绍的ADS-B。&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;民航客机会在1090MHz发射电磁波信号，将客机此刻的速度，方位，高度，方位角等信息下传至机场塔台。由于这一过程中的数据包并不加密，因此作为一个普通人我们也可以接收到这些数据包并通过软件解码，Flightradar24便是应用了这一原理。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;博主手头的RTL-SDR搭配原装天线加上树莓派就可以搭建一个微型个人ADS-B站点。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;制作&#34;&gt;制作&lt;/h2&gt;
+&lt;h3 id=&#34;方案选择&#34;&gt;方案选择&lt;/h3&gt;
+&lt;p&gt;博主使用了树莓派3B+与RTL-SDR的方案，使用Dump1090进行信号的解码。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;github-info-card-description&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;软件安装及配置&#34;&gt;软件安装及配置&lt;/h3&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;dump1090为我们提供了图形化的配置界面，因此我们可以很轻松地对软件进行配置。&lt;/p&gt;
+&lt;h3 id=&#34;访问web页面&#34;&gt;访问web页面&lt;/h3&gt;
+&lt;p&gt;上述指令执行完成后，我们将树莓派连入局域网，访问下面的链接，将IP替换为树莓派的内网IP即可访问web图形界面。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;把天线放在合适的位置，即可看到地图上显示的数据。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;内网穿透可选&#34;&gt;内网穿透（可选）&lt;/h2&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;作为一个爱折腾的人，仅止于局域网访问肯定是不够的，受限于博主所处的全锥形NAT网络，想起半个月前白嫖到了腾讯云免费的一个月轻量应用服务器，便在上面部署了NPS内网穿透。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;github-info-card-description&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;在本地树莓派上部署好NPC后，输入指定IP与端口，便可以让外网访问你的ADS-B监测站点，由于有被请喝茶的风险，在这里博主就不放出链接了。&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>树莓派清灰日记：制作全模式全频段电台</title>
+        <link>https://example.com/rspi-radio/</link>
+        <pubDate>Wed, 02 Mar 2022 02:00:24 +0000</pubDate>
+        
+        <guid>https://example.com/rspi-radio/</guid>
+        <description>&lt;p&gt;自从四年前从某同学那里拿到&lt;!-- raw HTML omitted --&gt;白嫖&lt;!-- raw HTML omitted --&gt;一台树莓派3B+后，除了偶尔用过几次，大部分时间是吃灰的。但事情的转机出现在半个月前的下午，我在GitHub日常检索时发现了一个有趣的项目：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&#39;github-info-card-description&#39;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;简单的原理介绍&#34;&gt;简单的原理介绍&lt;/h3&gt;
+&lt;p&gt;其实以前我就玩过类似的项目，但仅止于87.5MHz-108MHz的FM Broadcast频段，发射的模式也只有FM。其实这两者间原理都类似：&lt;/p&gt;
+&lt;p&gt;根据麦克斯韦的电磁理论&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;strong&gt;随时间变化的电场产生磁场，而随时间变化的磁场又产生电场，两者互为因果。这种不断转化的场统称为电磁场。这种相互的转化形成电磁振荡。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;所以如果在树莓派的 GPIO 上，通过软件控制以一定频率输出高低电平，再加上适当长度的天线，就可以将能量以电磁波的形式发射出去。&lt;/p&gt;
+&lt;h3 id=&#34;上手实操&#34;&gt;上手实操&lt;/h3&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这个项目最吸引我的是它广得惊人的发射范围 可支持50KHz-1GHz的信号发射和几乎所有模式的支持，虽然不清楚具体原理，但我估计FM是用调主频PLL的方式产生调频，SSB则是加上PWM控制幅度。&lt;/p&gt;
+&lt;p&gt;作者在Repo里列出了这样一张表格&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持状态
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  部分支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  支持
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;td&amp;gt;
+  测试中
+&amp;lt;/td&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我拿出积了一层灰的树莓派3B+，开始了折腾之旅。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h4 id=&#34;安装&#34;&gt;安装&lt;/h4&gt;
+&lt;p&gt;首先把仓库clone下来，运行内置的安装脚本&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;由于家里宽带的原因，GitHub访问日常抽风(点名批评中国移动)。漫长的一个小时过后，GitHub clone下的文件终于全部编译成功，编译完成后他会询问你是否需要超频&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;前期安装工作便正式完成了&lt;/p&gt;
+&lt;h4 id=&#34;使用&#34;&gt;使用&lt;/h4&gt;
+&lt;p&gt;作者很贴心地在仓库中给出了一键发射的脚本。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;输入输出频率后，便进入了这个页面&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;好家伙，支持很多模式啊。只要用方向键移到对应的模式就可以进行发射。发射在GPIO4上，于是我在GPIO4上插了半根杜邦线当作天线。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;当然，你也可以选择接入一根天线以达到最大的发射效率，但请首先接入一个带通滤波器，树莓派发射的杂散惊人。&lt;/p&gt;
+&lt;h4 id=&#34;验证&#34;&gt;验证&lt;/h4&gt;
+&lt;p&gt;无线电波看不见也摸不着，我就在想如何验证信号真的发出了呢？这时我又想起我吃灰一年半的&lt;!-- raw HTML omitted --&gt;祖国版&lt;!-- raw HTML omitted --&gt;SDRPlay RSP1A，支持1KHz-2GHz的信号接收。（如果你有RTL-SDR也可以，笔者不用RTL-SDR是因为这个设备后续可以与rpitx结合使用）&lt;/p&gt;
+&lt;p&gt;连接电脑，打开SDRuno，这里我薅了一个手台的天线用来接收。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;艰难地将其固定好后，我便调好频率 按下发射键，一个不断移动的载波信号便在中心频率附近跳动&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;随后又尝试了各种模式，立体声FM，窄带FM和各种数传（当时忘记截图了）。&lt;/p&gt;
+&lt;p&gt;作为一个ham，我又尝试了其在短波上的发射情况，我在14270khz发射了单边带信号，用有源小环天线也实现了正常的接收。&lt;/p&gt;
+&lt;h2 id=&#34;节目预告rtl-sdrrpitx&#34;&gt;节目预告：RTL-SDR+Rpitx=?&lt;/h2&gt;
+&lt;p&gt;这个项目搭配RTL-SDR可以有更多进阶玩法，笔者也正在慢慢探索中，下一篇文章会详细跟大家聊聊&lt;!-- raw HTML omitted --&gt;其实就是懒得弄了&lt;!-- raw HTML omitted --&gt;。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

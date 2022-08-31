@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>服务器 on CaCl2&#39;s Space</title>
+        <link>https://example.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+        <description>Recent content in 服务器 on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 09 Mar 2022 08:07:04 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Minecraft服务器【上】: 建设与优化</title>
+        <link>https://example.com/minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%90%E4%B8%8A%E3%80%91-%E5%BB%BA%E8%AE%BE%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+        <pubDate>Wed, 09 Mar 2022 08:07:04 +0000</pubDate>
+        
+        <guid>https://example.com/minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%90%E4%B8%8A%E3%80%91-%E5%BB%BA%E8%AE%BE%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+        <description>&lt;p&gt;在上一篇说说中，博主提到了要用服务器开私服。在一个阳光晴好的下午，我开始了服务器的建设：&lt;/p&gt;
+&lt;h2 id=&#34;服务端的选择&#34;&gt;服务端的选择&lt;/h2&gt;
+&lt;p&gt;由于多年未涉足MC服务器圈，我首先粗略了解了一下目前的主流服务端。&lt;/p&gt;
+&lt;p&gt;众所周知，像博主这种喜欢折腾的人，自然不会选择官方提供的服务端，我查到了&lt;a class=&#34;link&#34; href=&#34;https://minecraft.fandom.com/zh/wiki/%E5%AE%9A%E5%88%B6%E6%9C%8D%E5%8A%A1%E5%99%A8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Minecraft Wiki&lt;/a&gt;上提供的第三方服务端列表。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;经过一系列权衡后，博主选择了&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Spigot端&lt;/a&gt;。选择这个服务端主要是因为其优秀的性能表现和对原版特性的支持&lt;!-- raw HTML omitted --&gt;说白了就是服务器配置太拉&lt;!-- raw HTML omitted --&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;开始安装&#34;&gt;开始安装&lt;/h2&gt;
+&lt;p&gt;Spigot的BuildTools需要JAVA17。得益于Debian系强大的APT包管理器，博主很方便地成功安装了jdk17。&lt;/p&gt;
+&lt;p&gt;打开Spigot的官网后，下载BuildTool.jar。根据网站上的指引我执行了如下指令&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;正当博主泡上一壶碧螺春，准备让服务器自动构建时，发现构建工具在一个进程上卡住了。莫约15分钟后，我手里的碧螺春都凉了，服务器依旧卡在那里。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;根据我敏锐的观察力，发现是下载服务端时出了问题。于是我尝试wget直接下载服务端。于是乎&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;鉴于服务器感人的网速，博主进行了一系列魔法操作，成功提高了下载速度。等待其自行下载和编译服务端即可。&lt;/p&gt;
+&lt;p&gt;构建完成后，直接运行服务端文件。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;正当我满心欢喜等着服务器开起来时，突然又报错了。定睛一看，原来是要接受他们的EULA，不然不能开服。&lt;!-- raw HTML omitted --&gt;霸王条款了属于是&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;接受EULA后，服务器便正常运行起来了。至此服务器安装完成。&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;p&gt;打开server.properties，便可以对服务器进行基本的设置。据博主了解，身边的朋友80%使用的是mc盗版，剩下的20%玩网易。因此博主便关闭了online-mode，使得盗版账号也可正常进入服务器游玩。&lt;/p&gt;
+&lt;p&gt;一切都配置好后，我便找了一个朋友邀请他玩服务器：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;问了一圈下来，博主发现身边大部分人玩的都是基岩版，剩下的一部分人觉得配置java很麻烦&lt;!-- raw HTML omitted --&gt;雀实&lt;!-- raw HTML omitted --&gt;，用java版的少之又少。开基岩版服务器自然是不可能的，第三方支持极少，根本不符合我爱折腾的性格。&lt;/p&gt;
+&lt;p&gt;就在这时，我检索到了一个叫做Geyser的插件。可以实现BE-JE间的服务器互通，放入spigot的plugin目录即可使用，为了使盗版玩家也能顺利进服游玩，我又下载了Geyser官方提供的Floodgate插件进行基岩版用户的登录。&lt;/p&gt;
+&lt;p&gt;随后，博主又在服务器上装了一些基本的插件，诸如领地，经济之类。找了几个好友后，便把服务器开了起来。&lt;/p&gt;
+&lt;h2 id=&#34;优化&#34;&gt;优化&lt;/h2&gt;
+&lt;p&gt;一日下午，眼看时间来到三点几，我正在饮茶，这时有人私发我qq：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我心想服务器配置是差点，也不至于这么卡。强忍住怒火后，我进入游戏，发现tps达到了惊人的个位数。翻看聊天记录，我看到了这一幕：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这不卡才怪…我心里想着，但让他们这么一直跑图也不是个事，且不说服务器压力有多大，而且我也要背负不少玩家的骂名。回想起前几日与我服一老玩家，现服主的交流。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我便开始询问他&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;一顿操作后我下载了Chunky，丢到服务器插件目录，输入指令，设置边界，开始预载世界后我遍把他丢在那里。第二天早上起来，发现生成进度才10%，截至本文发布时，世界还没有预载完。但已加载的区块中明显流畅了许多。&lt;/p&gt;
+&lt;p&gt;To be continued…..&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

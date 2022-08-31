@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Categories on CaCl2&#39;s Space</title>
+        <link>https://example.com/categories/</link>
+        <description>Recent content in Categories on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 25 May 2022 06:50:59 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>技术</title>
+        <link>https://example.com/categories/%E6%8A%80%E6%9C%AF/</link>
+        <pubDate>Wed, 25 May 2022 06:50:59 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%8A%80%E6%9C%AF/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>日常</title>
+        <link>https://example.com/categories/%E6%97%A5%E5%B8%B8/</link>
+        <pubDate>Wed, 25 May 2022 06:50:59 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%97%A5%E5%B8%B8/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>树莓派</title>
+        <link>https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</link>
+        <pubDate>Wed, 25 May 2022 06:50:59 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>网络</title>
+        <link>https://example.com/categories/%E7%BD%91%E7%BB%9C/</link>
+        <pubDate>Wed, 25 May 2022 06:50:59 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E7%BD%91%E7%BB%9C/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>SDR(软件定义无线电)</title>
+        <link>https://example.com/categories/sdr%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/</link>
+        <pubDate>Sun, 03 Apr 2022 13:48:26 +0000</pubDate>
+        
+        <guid>https://example.com/categories/sdr%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>无线电</title>
+        <link>https://example.com/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/</link>
+        <pubDate>Sun, 03 Apr 2022 13:48:26 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>游戏</title>
+        <link>https://example.com/categories/%E6%B8%B8%E6%88%8F/</link>
+        <pubDate>Wed, 09 Mar 2022 08:07:04 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E6%B8%B8%E6%88%8F/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>随笔</title>
+        <link>https://example.com/categories/%E9%9A%8F%E7%AC%94/</link>
+        <pubDate>Tue, 01 Mar 2022 06:53:19 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E9%9A%8F%E7%AC%94/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

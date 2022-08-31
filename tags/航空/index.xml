@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>航空 on CaCl2&#39;s Space</title>
+        <link>https://example.com/tags/%E8%88%AA%E7%A9%BA/</link>
+        <description>Recent content in 航空 on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Thu, 24 Mar 2022 06:24:18 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E8%88%AA%E7%A9%BA/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>树莓派＋RTLSDR搭建ADS-B监测站点</title>
+        <link>https://example.com/raspi-adsb-station/</link>
+        <pubDate>Thu, 24 Mar 2022 06:24:18 +0000</pubDate>
+        
+        <guid>https://example.com/raspi-adsb-station/</guid>
+        <description>&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;近期中国东方航空MU5735航班发生事故坠毁，痛心之余不知大家是否注意到，各大媒体都不约而同地引用了这样一张数据图：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这张图中清晰地显示了东航MU5735在坠落前的速度，高度等数据。飞机已经损毁到如此程度，这些数据又是怎么保存下来的呢？这便用到了我们今天所要介绍的ADS-B。&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;民航客机会在1090MHz发射电磁波信号，将客机此刻的速度，方位，高度，方位角等信息下传至机场塔台。由于这一过程中的数据包并不加密，因此作为一个普通人我们也可以接收到这些数据包并通过软件解码，Flightradar24便是应用了这一原理。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;博主手头的RTL-SDR搭配原装天线加上树莓派就可以搭建一个微型个人ADS-B站点。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;制作&#34;&gt;制作&lt;/h2&gt;
+&lt;h3 id=&#34;方案选择&#34;&gt;方案选择&lt;/h3&gt;
+&lt;p&gt;博主使用了树莓派3B+与RTL-SDR的方案，使用Dump1090进行信号的解码。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;github-info-card-description&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;软件安装及配置&#34;&gt;软件安装及配置&lt;/h3&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;dump1090为我们提供了图形化的配置界面，因此我们可以很轻松地对软件进行配置。&lt;/p&gt;
+&lt;h3 id=&#34;访问web页面&#34;&gt;访问web页面&lt;/h3&gt;
+&lt;p&gt;上述指令执行完成后，我们将树莓派连入局域网，访问下面的链接，将IP替换为树莓派的内网IP即可访问web图形界面。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;把天线放在合适的位置，即可看到地图上显示的数据。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;内网穿透可选&#34;&gt;内网穿透（可选）&lt;/h2&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;作为一个爱折腾的人，仅止于局域网访问肯定是不够的，受限于博主所处的全锥形NAT网络，想起半个月前白嫖到了腾讯云免费的一个月轻量应用服务器，便在上面部署了NPS内网穿透。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;github-info-card-description&amp;quot;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;在本地树莓派上部署好NPC后，输入指定IP与端口，便可以让外网访问你的ADS-B监测站点，由于有被请喝茶的风险，在这里博主就不放出链接了。&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

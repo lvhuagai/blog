@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>对象存储 on CaCl2&#39;s Space</title>
+        <link>https://example.com/tags/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/</link>
+        <description>Recent content in 对象存储 on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 01 May 2022 03:30:21 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>利用腾讯云对象存储COS与轻量应用云服务器搭建私有云</title>
+        <link>https://example.com/qcloud-cos-netdisk/</link>
+        <pubDate>Sun, 01 May 2022 03:30:21 +0000</pubDate>
+        
+        <guid>https://example.com/qcloud-cos-netdisk/</guid>
+        <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;最近博主沉迷于Doctor Who，但无奈找到的资源都在百度网盘，下载速度极慢，在线观看的流畅度也堪忧，如果自己搭建一个私有云，那就不必忍受各种网盘的限制，多平台在线观看。但苦于云服务器昂贵的宽带价格，一直没能如愿，如果用5Mbps的小水管，效果甚至不如百度网盘。But，前段时间我从朋友那里了解到了对象存储，便心想将私有云接入对象存储即可解决这一问题。&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;h3 id=&#34;对象存储的概念&#34;&gt;对象存储的概念&lt;/h3&gt;
+&lt;p&gt;什么是对象存储？我查阅了Wikipedia，他们给出的解释是：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;不知道大家看完是什么样的心情，反正我当场就：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;说人话就是：一个多节点，非结构存储，扁平结构，弹性扩容的文件储存服务。（目前本文的图片已经正在使用对象存储）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非结构存储：对象存储适用于存储非结构化的数据，我们日常生活中见到的文档、文本、图片、XML, HTML、各类报表、音视频信息等等都是非结构化数据。据统计，自社交网络发展以来，非结构化数据占总数据量的75%。&lt;/li&gt;
+&lt;li&gt;多节点：以腾讯云对象存储 COS 为例，COS的存储机房遍布全球，简单来说，不管你身处何处，都可以选择将数据存储在就近的机房，加快数据的传输访问。&lt;/li&gt;
+&lt;li&gt;扁平结构：对象存储中没有文件夹的概念，所有数据均存储在同一个层级中，如上述介绍提到，对于存在对象存储中的数据，你不需要知道他存在哪里，只需要通过“凭证”就可以快速获取数据。&lt;/li&gt;
+&lt;li&gt;弹性扩容：对象存储的容量是EB级以上的，EB有多大？1EB ≈ 1*10^9 GB。&lt;!-- raw HTML omitted --&gt;（这条忽略，个人用户没有需求用这么大的）&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;常用的对象存储服务&#34;&gt;常用的对象存储服务&lt;/h3&gt;
+&lt;p&gt;这是博主使用的Cloudreve网盘系统支持的对象存储服务。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;博主的服务器在腾讯云，于是便选择了腾讯云的cos作为对象存储服务，腾讯云cos新用户免费赠送半年。&lt;/p&gt;
+&lt;h2 id=&#34;操作&#34;&gt;操作&lt;/h2&gt;
+&lt;h3 id=&#34;开通cos对象存储服务&#34;&gt;开通COS对象存储服务&lt;/h3&gt;
+&lt;p&gt;进入腾讯云对象存储的页面，点击创建存储桶，弹出如下页面。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;如果要在腾讯云的服务器部署网盘系统，请选择与服务器一致的地域，这样会更加节省流量。存储桶名称自定义。访问权限设为公有读私有写。&lt;/p&gt;
+&lt;p&gt;创建完成后我们便开始进行服务器的配置。&lt;/p&gt;
+&lt;h3 id=&#34;网盘系统的搭健&#34;&gt;网盘系统的搭健&lt;/h3&gt;
+&lt;p&gt;博主这里使用的是腾讯云的轻量应用服务器，可以一键部署Cloudreve系统，如果你使用的不是轻量应用服务器，则需要手动部署，这里不再赘述。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;搭建完成后直接访问服务器的IP（别问我为什么不用域名，问就是没备案），便可以看到网盘系统已经部署好了。根据提示获取管理员账号和密码，即可进入网盘系统。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;但值得注意的是，此时并不会使用对象存储，而是直接将文件保存在服务器本地。我们还需要进行存储策略的配置。&lt;/p&gt;
+&lt;h3 id=&#34;配置存储策略&#34;&gt;配置存储策略&lt;/h3&gt;
+&lt;p&gt;登录Cloudreve系统后，点击右上角的头像，选择管理面板，我们便进入了网盘的后台管理系统。在左侧栏点击存储策略，随后点击新建存储策略&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;随后选择你使用的对象存储服务，我这里使用的是腾讯云 COS。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;按照Cloudreve的向导完成操作即可。&lt;/p&gt;
+&lt;h3 id=&#34;用户组的设置&#34;&gt;用户组的设置&lt;/h3&gt;
+&lt;p&gt;完成上述操作后，在管理面板中打开用户组，将管理员（也就是你所在的用户组）的存储策略改为你刚刚配置的策略。配置好相关选择，点击保存即可。这时你上传文件时，使用的就是COS的对象存储服务。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结&lt;/h2&gt;
+&lt;p&gt;博主搭建完这个系统后，将电脑中的Doctor Who资源存储到了网盘中，上传下载速度很可观，均可跑满宽带，在线观看视频几乎不需要加载。可以欢乐地在线看视频了。&lt;strong&gt;本文不是腾讯云的恰饭推广文章，其它的对象存储服务商也可以使用，例如七牛云，又拍云等。&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

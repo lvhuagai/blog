@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>日常 on CaCl2&#39;s Space</title>
+        <link>https://example.com/categories/%E6%97%A5%E5%B8%B8/</link>
+        <description>Recent content in 日常 on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Wed, 25 May 2022 06:50:59 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>使用阿里云盘WebDAV协议搭建kodi影视中心</title>
+        <link>https://example.com/aliyundrive-webdav-kodi/</link>
+        <pubDate>Wed, 25 May 2022 06:50:59 +0000</pubDate>
+        
+        <guid>https://example.com/aliyundrive-webdav-kodi/</guid>
+        <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;几天前，博主把家里老电脑的硬盘拆了下来，打算做一个局域网NAS系统，存放Kodi使用的影视资源。然而SATA转usb线还未下单，博主就喜提7+3隔离。无意间看到kodi支持WebDAV协议，但之前的COS对象存储方案流量费属实让人肉疼，无意间我在GitHub看到了一个项目，可以将阿里云盘以WebDAV的形式挂载到本地局域网。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&#39;github-info-card-description&#39;&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;搭配此项目，只要将影视资源保存在阿里云盘，本地的Kodi就可以播放，免去了本地搭建文件服务器这一环节。&lt;/p&gt;
+&lt;h2 id=&#34;操作&#34;&gt;操作&lt;/h2&gt;
+&lt;h3 id=&#34;下载二进制文件&#34;&gt;下载二进制文件&lt;/h3&gt;
+&lt;p&gt;aliyundrive-webdav支持多种架构的设备，可运行在x86，mipsel，arm等多种平台的设备上。&lt;/p&gt;
+&lt;p&gt;博主的树莓派已经提前安装好了Kodi，只需要配置阿里云盘在局域网的WebDAV即可。博主打算把这个项目运行在树莓派上，因此在Releases下载已经编译好的二进制文件，ArmV7架构。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;解压后给予相应权限。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;程序的命令行用法。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;获取refresh_token&#34;&gt;获取refresh_token&lt;/h3&gt;
+&lt;p&gt;随后我们需要到阿里云盘网页端获取自己账户的refresh_token。&lt;/p&gt;
+&lt;p&gt;浏览器登录&lt;a class=&#34;link&#34; href=&#34;https://www.aliyundrive.com/drive/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;阿里云盘&lt;/a&gt;后，在控制台输入&lt;code&gt;JSON.parse(localStorage.token).refresh_token&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;即可获得当前账户的refresh_token。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我们也可以手动获取refresh_token。&lt;/p&gt;
+&lt;p&gt;登录&lt;a class=&#34;link&#34; href=&#34;https://www.aliyundrive.com/drive/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;阿里云盘&lt;/a&gt;后，可以在开发者工具 -&amp;gt; Application -&amp;gt; Local Storage 中的 &lt;code&gt;token&lt;/code&gt; 字段中找到。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;开始运行&#34;&gt;开始运行&lt;/h3&gt;
+&lt;p&gt;使用ssh连接至树莓派，在二进制文件同一目录下输入指令。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;将&amp;lt;REFRESH_TOKEN&amp;gt;字段替换为刚刚获取的refresh token即可。运行后如图所示。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这时WebDAV服务就已经在本地局域网运行，局域网内设备使用 设备的局域网IP:8080 即可连接对应的WebDAV服务器。在Windows下使用RaiDrive等软件可以将其挂载至文件资源管理器。&lt;/p&gt;
+&lt;h3 id=&#34;kodi的连接&#34;&gt;Kodi的连接&lt;/h3&gt;
+&lt;p&gt;这时我们将搭载kodi的设备连接至同一局域网，在“视频”选项卡点击“添加视频”选项。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;点击左侧的浏览按钮。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;点击添加网络位置。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我们选择协议“WebDAV服务器（HTTP）”，服务器地址填写运行上述项目的局域网IP，端口为8080，用户名和密码不需要填写，远程路径自定义即可。设置完成后点击确定。&lt;/p&gt;
+&lt;p&gt;完成上述操作后一路确定，我们就可以在kodi中访问远程目录的视频了。但此时视频并不会显示电影名称 海报等元素，只是以视频的形式呈现。下一篇文章会解决这一问题&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>利用腾讯云对象存储COS与轻量应用云服务器搭建私有云</title>
+        <link>https://example.com/qcloud-cos-netdisk/</link>
+        <pubDate>Sun, 01 May 2022 03:30:21 +0000</pubDate>
+        
+        <guid>https://example.com/qcloud-cos-netdisk/</guid>
+        <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;最近博主沉迷于Doctor Who，但无奈找到的资源都在百度网盘，下载速度极慢，在线观看的流畅度也堪忧，如果自己搭建一个私有云，那就不必忍受各种网盘的限制，多平台在线观看。但苦于云服务器昂贵的宽带价格，一直没能如愿，如果用5Mbps的小水管，效果甚至不如百度网盘。But，前段时间我从朋友那里了解到了对象存储，便心想将私有云接入对象存储即可解决这一问题。&lt;/p&gt;
+&lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;h3 id=&#34;对象存储的概念&#34;&gt;对象存储的概念&lt;/h3&gt;
+&lt;p&gt;什么是对象存储？我查阅了Wikipedia，他们给出的解释是：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;不知道大家看完是什么样的心情，反正我当场就：&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;说人话就是：一个多节点，非结构存储，扁平结构，弹性扩容的文件储存服务。（目前本文的图片已经正在使用对象存储）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非结构存储：对象存储适用于存储非结构化的数据，我们日常生活中见到的文档、文本、图片、XML, HTML、各类报表、音视频信息等等都是非结构化数据。据统计，自社交网络发展以来，非结构化数据占总数据量的75%。&lt;/li&gt;
+&lt;li&gt;多节点：以腾讯云对象存储 COS 为例，COS的存储机房遍布全球，简单来说，不管你身处何处，都可以选择将数据存储在就近的机房，加快数据的传输访问。&lt;/li&gt;
+&lt;li&gt;扁平结构：对象存储中没有文件夹的概念，所有数据均存储在同一个层级中，如上述介绍提到，对于存在对象存储中的数据，你不需要知道他存在哪里，只需要通过“凭证”就可以快速获取数据。&lt;/li&gt;
+&lt;li&gt;弹性扩容：对象存储的容量是EB级以上的，EB有多大？1EB ≈ 1*10^9 GB。&lt;!-- raw HTML omitted --&gt;（这条忽略，个人用户没有需求用这么大的）&lt;!-- raw HTML omitted --&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;常用的对象存储服务&#34;&gt;常用的对象存储服务&lt;/h3&gt;
+&lt;p&gt;这是博主使用的Cloudreve网盘系统支持的对象存储服务。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;博主的服务器在腾讯云，于是便选择了腾讯云的cos作为对象存储服务，腾讯云cos新用户免费赠送半年。&lt;/p&gt;
+&lt;h2 id=&#34;操作&#34;&gt;操作&lt;/h2&gt;
+&lt;h3 id=&#34;开通cos对象存储服务&#34;&gt;开通COS对象存储服务&lt;/h3&gt;
+&lt;p&gt;进入腾讯云对象存储的页面，点击创建存储桶，弹出如下页面。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;如果要在腾讯云的服务器部署网盘系统，请选择与服务器一致的地域，这样会更加节省流量。存储桶名称自定义。访问权限设为公有读私有写。&lt;/p&gt;
+&lt;p&gt;创建完成后我们便开始进行服务器的配置。&lt;/p&gt;
+&lt;h3 id=&#34;网盘系统的搭健&#34;&gt;网盘系统的搭健&lt;/h3&gt;
+&lt;p&gt;博主这里使用的是腾讯云的轻量应用服务器，可以一键部署Cloudreve系统，如果你使用的不是轻量应用服务器，则需要手动部署，这里不再赘述。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;搭建完成后直接访问服务器的IP（别问我为什么不用域名，问就是没备案），便可以看到网盘系统已经部署好了。根据提示获取管理员账号和密码，即可进入网盘系统。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;但值得注意的是，此时并不会使用对象存储，而是直接将文件保存在服务器本地。我们还需要进行存储策略的配置。&lt;/p&gt;
+&lt;h3 id=&#34;配置存储策略&#34;&gt;配置存储策略&lt;/h3&gt;
+&lt;p&gt;登录Cloudreve系统后，点击右上角的头像，选择管理面板，我们便进入了网盘的后台管理系统。在左侧栏点击存储策略，随后点击新建存储策略&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;随后选择你使用的对象存储服务，我这里使用的是腾讯云 COS。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;按照Cloudreve的向导完成操作即可。&lt;/p&gt;
+&lt;h3 id=&#34;用户组的设置&#34;&gt;用户组的设置&lt;/h3&gt;
+&lt;p&gt;完成上述操作后，在管理面板中打开用户组，将管理员（也就是你所在的用户组）的存储策略改为你刚刚配置的策略。配置好相关选择，点击保存即可。这时你上传文件时，使用的就是COS的对象存储服务。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结&lt;/h2&gt;
+&lt;p&gt;博主搭建完这个系统后，将电脑中的Doctor Who资源存储到了网盘中，上传下载速度很可观，均可跑满宽带，在线观看视频几乎不需要加载。可以欢乐地在线看视频了。&lt;strong&gt;本文不是腾讯云的恰饭推广文章，其它的对象存储服务商也可以使用，例如七牛云，又拍云等。&lt;/strong&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>Minecraft服务器【上】: 建设与优化</title>
+        <link>https://example.com/minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%90%E4%B8%8A%E3%80%91-%E5%BB%BA%E8%AE%BE%E4%B8%8E%E4%BC%98%E5%8C%96/</link>
+        <pubDate>Wed, 09 Mar 2022 08:07:04 +0000</pubDate>
+        
+        <guid>https://example.com/minecraft%E6%9C%8D%E5%8A%A1%E5%99%A8%E3%80%90%E4%B8%8A%E3%80%91-%E5%BB%BA%E8%AE%BE%E4%B8%8E%E4%BC%98%E5%8C%96/</guid>
+        <description>&lt;p&gt;在上一篇说说中，博主提到了要用服务器开私服。在一个阳光晴好的下午，我开始了服务器的建设：&lt;/p&gt;
+&lt;h2 id=&#34;服务端的选择&#34;&gt;服务端的选择&lt;/h2&gt;
+&lt;p&gt;由于多年未涉足MC服务器圈，我首先粗略了解了一下目前的主流服务端。&lt;/p&gt;
+&lt;p&gt;众所周知，像博主这种喜欢折腾的人，自然不会选择官方提供的服务端，我查到了&lt;a class=&#34;link&#34; href=&#34;https://minecraft.fandom.com/zh/wiki/%E5%AE%9A%E5%88%B6%E6%9C%8D%E5%8A%A1%E5%99%A8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Minecraft Wiki&lt;/a&gt;上提供的第三方服务端列表。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;经过一系列权衡后，博主选择了&lt;a class=&#34;link&#34; href=&#34;https://www.spigotmc.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Spigot端&lt;/a&gt;。选择这个服务端主要是因为其优秀的性能表现和对原版特性的支持&lt;!-- raw HTML omitted --&gt;说白了就是服务器配置太拉&lt;!-- raw HTML omitted --&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;开始安装&#34;&gt;开始安装&lt;/h2&gt;
+&lt;p&gt;Spigot的BuildTools需要JAVA17。得益于Debian系强大的APT包管理器，博主很方便地成功安装了jdk17。&lt;/p&gt;
+&lt;p&gt;打开Spigot的官网后，下载BuildTool.jar。根据网站上的指引我执行了如下指令&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;正当博主泡上一壶碧螺春，准备让服务器自动构建时，发现构建工具在一个进程上卡住了。莫约15分钟后，我手里的碧螺春都凉了，服务器依旧卡在那里。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;根据我敏锐的观察力，发现是下载服务端时出了问题。于是我尝试wget直接下载服务端。于是乎&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;鉴于服务器感人的网速，博主进行了一系列魔法操作，成功提高了下载速度。等待其自行下载和编译服务端即可。&lt;/p&gt;
+&lt;p&gt;构建完成后，直接运行服务端文件。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;正当我满心欢喜等着服务器开起来时，突然又报错了。定睛一看，原来是要接受他们的EULA，不然不能开服。&lt;!-- raw HTML omitted --&gt;霸王条款了属于是&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;接受EULA后，服务器便正常运行起来了。至此服务器安装完成。&lt;/p&gt;
+&lt;h2 id=&#34;配置&#34;&gt;配置&lt;/h2&gt;
+&lt;p&gt;打开server.properties，便可以对服务器进行基本的设置。据博主了解，身边的朋友80%使用的是mc盗版，剩下的20%玩网易。因此博主便关闭了online-mode，使得盗版账号也可正常进入服务器游玩。&lt;/p&gt;
+&lt;p&gt;一切都配置好后，我便找了一个朋友邀请他玩服务器：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;问了一圈下来，博主发现身边大部分人玩的都是基岩版，剩下的一部分人觉得配置java很麻烦&lt;!-- raw HTML omitted --&gt;雀实&lt;!-- raw HTML omitted --&gt;，用java版的少之又少。开基岩版服务器自然是不可能的，第三方支持极少，根本不符合我爱折腾的性格。&lt;/p&gt;
+&lt;p&gt;就在这时，我检索到了一个叫做Geyser的插件。可以实现BE-JE间的服务器互通，放入spigot的plugin目录即可使用，为了使盗版玩家也能顺利进服游玩，我又下载了Geyser官方提供的Floodgate插件进行基岩版用户的登录。&lt;/p&gt;
+&lt;p&gt;随后，博主又在服务器上装了一些基本的插件，诸如领地，经济之类。找了几个好友后，便把服务器开了起来。&lt;/p&gt;
+&lt;h2 id=&#34;优化&#34;&gt;优化&lt;/h2&gt;
+&lt;p&gt;一日下午，眼看时间来到三点几，我正在饮茶，这时有人私发我qq：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我心想服务器配置是差点，也不至于这么卡。强忍住怒火后，我进入游戏，发现tps达到了惊人的个位数。翻看聊天记录，我看到了这一幕：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;这不卡才怪…我心里想着，但让他们这么一直跑图也不是个事，且不说服务器压力有多大，而且我也要背负不少玩家的骂名。回想起前几日与我服一老玩家，现服主的交流。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;我便开始询问他&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;一顿操作后我下载了Chunky，丢到服务器插件目录，输入指令，设置边界，开始预载世界后我遍把他丢在那里。第二天早上起来，发现生成进度才10%，截至本文发布时，世界还没有预载完。但已加载的区块中明显流畅了许多。&lt;/p&gt;
+&lt;p&gt;To be continued…..&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        <item>
+        <title>建站小记</title>
+        <link>https://example.com/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</link>
+        <pubDate>Tue, 01 Mar 2022 06:53:19 +0000</pubDate>
+        
+        <guid>https://example.com/%E5%BB%BA%E7%AB%99%E5%B0%8F%E8%AE%B0/</guid>
+        <description>&lt;p&gt;由于疫情的原因，我被迫在家上网课，&lt;!-- raw HTML omitted --&gt;很爽&lt;!-- raw HTML omitted --&gt;。&lt;/p&gt;
+&lt;p&gt;一日上网课时，我如爬虫一般在进行网络冲浪，一则信息映入我的眼帘：&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;（为避免恰饭之嫌，部分信息被隐去）&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;于是乎，我便冲动消费，买了一年服务器。最初我用这台服务器搭建了Minecraft服务器，but回想起两年前我当服主的艰难岁月，我不禁在内心叩问自己：为什么要开游戏服？&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;又回想起我三年前荒废已久的个站（我互联网履历还蛮丰富的嘛），便想重拾这一大业&lt;!-- raw HTML omitted --&gt;三分钟热度&lt;!-- raw HTML omitted --&gt;。&lt;/p&gt;
+&lt;p&gt;如你所见，本站应运而生了。&lt;/p&gt;
+&lt;p&gt;未来我将在本站分享自己的生活，一些奇怪的想法和相关记录！感谢您的关注！&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

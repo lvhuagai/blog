@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>气象传真 on CaCl2&#39;s Space</title>
+        <link>https://example.com/tags/%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/</link>
+        <description>Recent content in 气象传真 on CaCl2&#39;s Space</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <lastBuildDate>Sun, 03 Apr 2022 13:48:26 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>接收JMH气象传真</title>
+        <link>https://example.com/%E6%8E%A5%E6%94%B6jmh%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/</link>
+        <pubDate>Sun, 03 Apr 2022 13:48:26 +0000</pubDate>
+        
+        <guid>https://example.com/%E6%8E%A5%E6%94%B6jmh%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/</guid>
+        <description>&lt;h2 id=&#34;引子&#34;&gt;引子&lt;/h2&gt;
+&lt;p&gt;清明假期闲得无聊，把小环天线架在了窗外，正好赶上下午传播来了，便尝试收了一下JMH的气象传真。效果图如下。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+&lt;p&gt;需要的软件有：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;VAC虚拟声卡&lt;/a&gt; 用于将音频输出loopback至音频输入。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KG-FAX&lt;/a&gt; 用于气象传真的解码。&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Ntleas转码软件&lt;/a&gt; 由于KG-FAX编码是 Shift-JIS 不适配简体中文系统 因此使用该软件进行转码。&lt;strong&gt;（可选，Windows10可以正常打开KG-FAX，如果不想有乱码就用这个，无所谓的话可以直接打开）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;其他条件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一根短波天线&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;较好的传播及接收环境&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里博主使用了有源小环天线进行接收，这款天线在0.1MHz-180MHz的频段有着不俗的表现。SDR接收机使用了前几篇文章出场过的&lt;!-- raw HTML omitted --&gt;祖国版&lt;!-- raw HTML omitted --&gt;SdrPlay RSP1A。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h2 id=&#34;开始接收&#34;&gt;开始接收&lt;/h2&gt;
+&lt;h3 id=&#34;虚拟声卡配置&#34;&gt;虚拟声卡配置&lt;/h3&gt;
+&lt;p&gt;首先进行虚拟声卡的配置，首先安装VAC虚拟声卡软件，安装完成后打开Windows的声音设置，将默认输入设备改成”&lt;em&gt;Line 1(Virtual Audio Cable)&lt;/em&gt;“&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;频率调整&#34;&gt;频率调整&lt;/h3&gt;
+&lt;p&gt;得益于博主强大的情报网，我搞到了一份美国国家海洋和大气管理局编写的&lt;a class=&#34;link&#34; href=&#34;http://cacl2.ysepan.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;全球气象传真频率表&lt;/a&gt;，查询后得知，JMH分别在3622.5 kHz 7795kHz和13988.5kHz 24h全天候播发，博主在根据自身条件在这里选择了在13988.5kHz接收，由于使用USB上边带模式接收，调整好对应频差后即为在13986.6kHz接收。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;随后将SDRuno的输出设备改为之前配置的虚拟声卡。如果是SDRuno，点击RX CONTROL面板的SETT.，在OUT中选择”&lt;em&gt;Line 1(Virtual Audio Cable)&lt;/em&gt;“，重新开始即可。&lt;/p&gt;
+&lt;h3 id=&#34;开始解码&#34;&gt;开始解码&lt;/h3&gt;
+&lt;p&gt;使用Ntleas打开KG-FAX，可以在左边看到三个按钮。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;点击“掃引”按钮立即开始图像的解码。点击“自動制御”将会在接收到开始信号后才开始解码，如果图像此时已经传送了一半便无法解码，适用于想要接收一张完整传真的场景。点击“自动保存”按钮后可以设置图像解码完成后的保存路径。&lt;/p&gt;
+&lt;p&gt;随后软件就会开始自动解码，片刻后一张FAX传真就会完成。&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;!-- raw HTML omitted --&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

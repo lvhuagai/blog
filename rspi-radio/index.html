@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='自从四年前从某同学那里拿到白嫖一台树莓派3B&#43;后，除了偶尔用过几次，大部分时间是吃灰的。但事情的转机出现在半个月前的下午，我在GitHub日常检索时发现了一个有趣的项目：
+&amp;lt;div class=&#39;github-info-card-description&#39;&amp;gt; &amp;lt;/div&amp;gt; 简单的原理介绍 其实以前我就玩过类似的项目，但仅止于87.5MHz-108MHz的FM Broadcast频段，发射的模式也只有FM。其实这两者间原理都类似：
+根据麦克斯韦的电磁理论
+随时间变化的电场产生磁场，而随时间变化的磁场又产生电场，两者互为因果。这种不断转化的场统称为电磁场。这种相互的转化形成电磁振荡。
+所以如果在树莓派的 GPIO 上，通过软件控制以一定频率输出高低电平，再加上适当长度的天线，就可以将能量以电磁波的形式发射出去。
+上手实操 这个项目最吸引我的是它广得惊人的发射范围 可支持50KHz-1GHz的信号发射和几乎所有模式的支持，虽然不清楚具体原理，但我估计FM是用调主频PLL的方式产生调频，SSB则是加上PWM控制幅度。
+作者在Repo里列出了这样一张表格
+&amp;lt;td&amp;gt; 支持状态 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 部分支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 测试中 &amp;lt;/td&amp;gt; 我拿出积了一层灰的树莓派3B&#43;，开始了折腾之旅。
+安装 首先把仓库clone下来，运行内置的安装脚本
+由于家里宽带的原因，GitHub访问日常抽风(点名批评中国移动)。漫长的一个小时过后，GitHub clone下的文件终于全部编译成功，编译完成后他会询问你是否需要超频
+前期安装工作便正式完成了
+使用 作者很贴心地在仓库中给出了一键发射的脚本。
+输入输出频率后，便进入了这个页面
+好家伙，支持很多模式啊。只要用方向键移到对应的模式就可以进行发射。发射在GPIO4上，于是我在GPIO4上插了半根杜邦线当作天线。
+当然，你也可以选择接入一根天线以达到最大的发射效率，但请首先接入一个带通滤波器，树莓派发射的杂散惊人。
+验证 无线电波看不见也摸不着，我就在想如何验证信号真的发出了呢？这时我又想起我吃灰一年半的祖国版SDRPlay RSP1A，支持1KHz-2GHz的信号接收。（如果你有RTL-SDR也可以，笔者不用RTL-SDR是因为这个设备后续可以与rpitx结合使用）
+连接电脑，打开SDRuno，这里我薅了一个手台的天线用来接收。
+艰难地将其固定好后，我便调好频率 按下发射键，一个不断移动的载波信号便在中心频率附近跳动
+随后又尝试了各种模式，立体声FM，窄带FM和各种数传（当时忘记截图了）。
+作为一个ham，我又尝试了其在短波上的发射情况，我在14270khz发射了单边带信号，用有源小环天线也实现了正常的接收。
+节目预告：RTL-SDR&#43;Rpitx=? 这个项目搭配RTL-SDR可以有更多进阶玩法，笔者也正在慢慢探索中，下一篇文章会详细跟大家聊聊其实就是懒得弄了。'><title>树莓派清灰日记：制作全模式全频段电台</title>
+
+<link rel='canonical' href='https://example.com/rspi-radio/'>
+
+<link rel="stylesheet" href="/scss/style.min.5a8e892f6fa14515e9065eee1f5d2e05302606ec7f11750b2fb95198f9cdcbfd.css"><meta property='og:title' content='树莓派清灰日记：制作全模式全频段电台'>
+<meta property='og:description' content='自从四年前从某同学那里拿到白嫖一台树莓派3B&#43;后，除了偶尔用过几次，大部分时间是吃灰的。但事情的转机出现在半个月前的下午，我在GitHub日常检索时发现了一个有趣的项目：
+&amp;lt;div class=&#39;github-info-card-description&#39;&amp;gt; &amp;lt;/div&amp;gt; 简单的原理介绍 其实以前我就玩过类似的项目，但仅止于87.5MHz-108MHz的FM Broadcast频段，发射的模式也只有FM。其实这两者间原理都类似：
+根据麦克斯韦的电磁理论
+随时间变化的电场产生磁场，而随时间变化的磁场又产生电场，两者互为因果。这种不断转化的场统称为电磁场。这种相互的转化形成电磁振荡。
+所以如果在树莓派的 GPIO 上，通过软件控制以一定频率输出高低电平，再加上适当长度的天线，就可以将能量以电磁波的形式发射出去。
+上手实操 这个项目最吸引我的是它广得惊人的发射范围 可支持50KHz-1GHz的信号发射和几乎所有模式的支持，虽然不清楚具体原理，但我估计FM是用调主频PLL的方式产生调频，SSB则是加上PWM控制幅度。
+作者在Repo里列出了这样一张表格
+&amp;lt;td&amp;gt; 支持状态 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 部分支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 测试中 &amp;lt;/td&amp;gt; 我拿出积了一层灰的树莓派3B&#43;，开始了折腾之旅。
+安装 首先把仓库clone下来，运行内置的安装脚本
+由于家里宽带的原因，GitHub访问日常抽风(点名批评中国移动)。漫长的一个小时过后，GitHub clone下的文件终于全部编译成功，编译完成后他会询问你是否需要超频
+前期安装工作便正式完成了
+使用 作者很贴心地在仓库中给出了一键发射的脚本。
+输入输出频率后，便进入了这个页面
+好家伙，支持很多模式啊。只要用方向键移到对应的模式就可以进行发射。发射在GPIO4上，于是我在GPIO4上插了半根杜邦线当作天线。
+当然，你也可以选择接入一根天线以达到最大的发射效率，但请首先接入一个带通滤波器，树莓派发射的杂散惊人。
+验证 无线电波看不见也摸不着，我就在想如何验证信号真的发出了呢？这时我又想起我吃灰一年半的祖国版SDRPlay RSP1A，支持1KHz-2GHz的信号接收。（如果你有RTL-SDR也可以，笔者不用RTL-SDR是因为这个设备后续可以与rpitx结合使用）
+连接电脑，打开SDRuno，这里我薅了一个手台的天线用来接收。
+艰难地将其固定好后，我便调好频率 按下发射键，一个不断移动的载波信号便在中心频率附近跳动
+随后又尝试了各种模式，立体声FM，窄带FM和各种数传（当时忘记截图了）。
+作为一个ham，我又尝试了其在短波上的发射情况，我在14270khz发射了单边带信号，用有源小环天线也实现了正常的接收。
+节目预告：RTL-SDR&#43;Rpitx=? 这个项目搭配RTL-SDR可以有更多进阶玩法，笔者也正在慢慢探索中，下一篇文章会详细跟大家聊聊其实就是懒得弄了。'>
+<meta property='og:url' content='https://example.com/rspi-radio/'>
+<meta property='og:site_name' content='CaCl2&#39;s Space'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2022-03-02T02:00:24&#43;00:00'/><meta property='article:modified_time' content='2022-03-02T02:00:24&#43;00:00'/>
+<meta name="twitter:title" content="树莓派清灰日记：制作全模式全频段电台">
+<meta name="twitter:description" content="自从四年前从某同学那里拿到白嫖一台树莓派3B&#43;后，除了偶尔用过几次，大部分时间是吃灰的。但事情的转机出现在半个月前的下午，我在GitHub日常检索时发现了一个有趣的项目：
+&amp;lt;div class=&#39;github-info-card-description&#39;&amp;gt; &amp;lt;/div&amp;gt; 简单的原理介绍 其实以前我就玩过类似的项目，但仅止于87.5MHz-108MHz的FM Broadcast频段，发射的模式也只有FM。其实这两者间原理都类似：
+根据麦克斯韦的电磁理论
+随时间变化的电场产生磁场，而随时间变化的磁场又产生电场，两者互为因果。这种不断转化的场统称为电磁场。这种相互的转化形成电磁振荡。
+所以如果在树莓派的 GPIO 上，通过软件控制以一定频率输出高低电平，再加上适当长度的天线，就可以将能量以电磁波的形式发射出去。
+上手实操 这个项目最吸引我的是它广得惊人的发射范围 可支持50KHz-1GHz的信号发射和几乎所有模式的支持，虽然不清楚具体原理，但我估计FM是用调主频PLL的方式产生调频，SSB则是加上PWM控制幅度。
+作者在Repo里列出了这样一张表格
+&amp;lt;td&amp;gt; 支持状态 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 部分支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 支持 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 测试中 &amp;lt;/td&amp;gt; 我拿出积了一层灰的树莓派3B&#43;，开始了折腾之旅。
+安装 首先把仓库clone下来，运行内置的安装脚本
+由于家里宽带的原因，GitHub访问日常抽风(点名批评中国移动)。漫长的一个小时过后，GitHub clone下的文件终于全部编译成功，编译完成后他会询问你是否需要超频
+前期安装工作便正式完成了
+使用 作者很贴心地在仓库中给出了一键发射的脚本。
+输入输出频率后，便进入了这个页面
+好家伙，支持很多模式啊。只要用方向键移到对应的模式就可以进行发射。发射在GPIO4上，于是我在GPIO4上插了半根杜邦线当作天线。
+当然，你也可以选择接入一根天线以达到最大的发射效率，但请首先接入一个带通滤波器，树莓派发射的杂散惊人。
+验证 无线电波看不见也摸不着，我就在想如何验证信号真的发出了呢？这时我又想起我吃灰一年半的祖国版SDRPlay RSP1A，支持1KHz-2GHz的信号接收。（如果你有RTL-SDR也可以，笔者不用RTL-SDR是因为这个设备后续可以与rpitx结合使用）
+连接电脑，打开SDRuno，这里我薅了一个手台的天线用来接收。
+艰难地将其固定好后，我便调好频率 按下发射键，一个不断移动的载波信号便在中心频率附近跳动
+随后又尝试了各种模式，立体声FM，窄带FM和各种数传（当时忘记截图了）。
+作为一个ham，我又尝试了其在短波上的发射情况，我在14270khz发射了单边带信号，用有源小环天线也实现了正常的接收。
+节目预告：RTL-SDR&#43;Rpitx=? 这个项目搭配RTL-SDR可以有更多进阶玩法，笔者也正在慢慢探索中，下一篇文章会详细跟大家聊聊其实就是懒得弄了。">
+    <link rel="shortcut icon" href="img/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hud70f50bea6eec92ee6984bf7a70474b2_30115_300x0_resize_q75_box.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">CaCl2&#39;s Space</a></h1>
+            <h2 class="site-description">技术，生活，摄影与电波...</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/sdr%E8%BD%AF%E4%BB%B6%E5%AE%9A%E4%B9%89%E6%97%A0%E7%BA%BF%E7%94%B5/" >
+                SDR(软件定义无线电)
+            </a>
+        
+            <a href="/categories/%E6%97%A0%E7%BA%BF%E7%94%B5/" >
+                无线电
+            </a>
+        
+            <a href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/" >
+                树莓派
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/rspi-radio/">树莓派清灰日记：制作全模式全频段电台</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 02, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 1 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>自从四年前从某同学那里拿到<!-- raw HTML omitted -->白嫖<!-- raw HTML omitted -->一台树莓派3B+后，除了偶尔用过几次，大部分时间是吃灰的。但事情的转机出现在半个月前的下午，我在GitHub日常检索时发现了一个有趣的项目：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;div class='github-info-card-description'&gt;
+&lt;/div&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h3 id="简单的原理介绍">简单的原理介绍</h3>
+<p>其实以前我就玩过类似的项目，但仅止于87.5MHz-108MHz的FM Broadcast频段，发射的模式也只有FM。其实这两者间原理都类似：</p>
+<p>根据麦克斯韦的电磁理论</p>
+<!-- raw HTML omitted -->
+<p><strong>随时间变化的电场产生磁场，而随时间变化的磁场又产生电场，两者互为因果。这种不断转化的场统称为电磁场。这种相互的转化形成电磁振荡。</strong></p>
+<p>所以如果在树莓派的 GPIO 上，通过软件控制以一定频率输出高低电平，再加上适当长度的天线，就可以将能量以电磁波的形式发射出去。</p>
+<h3 id="上手实操">上手实操</h3>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>这个项目最吸引我的是它广得惊人的发射范围 可支持50KHz-1GHz的信号发射和几乎所有模式的支持，虽然不清楚具体原理，但我估计FM是用调主频PLL的方式产生调频，SSB则是加上PWM控制幅度。</p>
+<p>作者在Repo里列出了这样一张表格<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持状态
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  部分支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  支持
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<pre><code>&lt;td&gt;
+  测试中
+&lt;/td&gt;
+</code></pre>
+<!-- raw HTML omitted -->
+<p>我拿出积了一层灰的树莓派3B+，开始了折腾之旅。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<h4 id="安装">安装</h4>
+<p>首先把仓库clone下来，运行内置的安装脚本</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>由于家里宽带的原因，GitHub访问日常抽风(点名批评中国移动)。漫长的一个小时过后，GitHub clone下的文件终于全部编译成功，编译完成后他会询问你是否需要超频</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>前期安装工作便正式完成了</p>
+<h4 id="使用">使用</h4>
+<p>作者很贴心地在仓库中给出了一键发射的脚本。</p>
+<!-- raw HTML omitted -->
+<p>输入输出频率后，便进入了这个页面<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>好家伙，支持很多模式啊。只要用方向键移到对应的模式就可以进行发射。发射在GPIO4上，于是我在GPIO4上插了半根杜邦线当作天线。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>当然，你也可以选择接入一根天线以达到最大的发射效率，但请首先接入一个带通滤波器，树莓派发射的杂散惊人。</p>
+<h4 id="验证">验证</h4>
+<p>无线电波看不见也摸不着，我就在想如何验证信号真的发出了呢？这时我又想起我吃灰一年半的<!-- raw HTML omitted -->祖国版<!-- raw HTML omitted -->SDRPlay RSP1A，支持1KHz-2GHz的信号接收。（如果你有RTL-SDR也可以，笔者不用RTL-SDR是因为这个设备后续可以与rpitx结合使用）</p>
+<p>连接电脑，打开SDRuno，这里我薅了一个手台的天线用来接收。<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>艰难地将其固定好后，我便调好频率 按下发射键，一个不断移动的载波信号便在中心频率附近跳动<!-- raw HTML omitted --></p>
+<!-- raw HTML omitted -->
+<p>随后又尝试了各种模式，立体声FM，窄带FM和各种数传（当时忘记截图了）。</p>
+<p>作为一个ham，我又尝试了其在短波上的发射情况，我在14270khz发射了单边带信号，用有源小环天线也实现了正常的接收。</p>
+<h2 id="节目预告rtl-sdrrpitx">节目预告：RTL-SDR+Rpitx=?</h2>
+<p>这个项目搭配RTL-SDR可以有更多进阶玩法，笔者也正在慢慢探索中，下一篇文章会详细跟大家聊聊<!-- raw HTML omitted -->其实就是懒得弄了<!-- raw HTML omitted -->。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/raspi-adsb-station/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">树莓派＋RTLSDR搭建ADS-B监测站点</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/%E6%8E%A5%E6%94%B6jmh%E6%B0%94%E8%B1%A1%E4%BC%A0%E7%9C%9F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">接收JMH气象传真</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/aliyundrive-webdav-kodi/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用阿里云盘WebDAV协议搭建kodi影视中心</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2022 CaCl2&#39;s Space
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.13.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li>
+      <ol>
+        <li><a href="#简单的原理介绍">简单的原理介绍</a></li>
+        <li><a href="#上手实操">上手实操</a>
+          <ol>
+            <li><a href="#安装">安装</a></li>
+            <li><a href="#使用">使用</a></li>
+            <li><a href="#验证">验证</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#节目预告rtl-sdrrpitx">节目预告：RTL-SDR+Rpitx=?</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
