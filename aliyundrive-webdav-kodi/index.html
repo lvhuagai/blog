@@ -7,19 +7,9 @@
 博主的树莓派已经提前安装好了Kodi，只需要配置阿里云盘在局域网的WebDAV即可。博主打算把这个项目运行在树莓派上，因此在Releases下载已经编译好的二进制文件，ArmV7架构。
 解压后给予相应权限。
 程序的命令行用法。
-获取refresh_token 随后我们需要到阿里云盘网页端获取自己账户的refresh_token。
-浏览器登录阿里云盘后，在控制台输入JSON.parse(localStorage.token).refresh_token
-即可获得当前账户的refresh_token。
-我们也可以手动获取refresh_token。
-登录阿里云盘后，可以在开发者工具 -&amp;gt; Application -&amp;gt; Local Storage 中的 token 字段中找到。
-开始运行 使用ssh连接至树莓派，在二进制文件同一目录下输入指令。
-将&amp;lt;REFRESH_TOKEN&amp;gt;字段替换为刚刚获取的refresh token即可。运行后如图所示。
-这时WebDAV服务就已经在本地局域网运行，局域网内设备使用 设备的局域网IP:8080 即可连接对应的WebDAV服务器。在Windows下使用RaiDrive等软件可以将其挂载至文件资源管理器。
-Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在“视频”选项卡点击“添加视频”选项。
-点击左侧的浏览按钮。
-点击添加网络位置。
-我们选择协议“WebDAV服务器（HTTP）”，服务器地址填写运行上述项目的局域网IP，端口为8080，用户名和密码不需要填写，远程路径自定义即可。设置完成后点击确定。
-完成上述操作后一路确定，我们就可以在kodi中访问远程目录的视频了。但此时视频并不会显示电影名称 海报等元素，只是以视频的形式呈现。下一篇文章会解决这一问题'><title>使用阿里云盘WebDAV协议搭建kodi影视中心</title>
+$ aliyundrive-webdav &amp;ndash;help aliyundrive-webdav 1.3.3
+USAGE: aliyundrive-webdav [OPTIONS]
+OPTIONS: &amp;ndash;cache-size &amp;lt;CACHE_SIZE&amp;gt; Directory entries cache size [default: 1000] &amp;ndash;cache-ttl &amp;lt;CACHE_TTL&amp;gt; Directory entries cache expiration time in seconds [default: 600] &amp;ndash;debug Enable debug log &amp;ndash;domain-id &amp;lt;DOMAIN_ID&amp;gt; Aliyun PDS domain id -h, &amp;ndash;help Print help information &amp;ndash;host &amp;lt;HOST&amp;gt; Listen host [env: HOST=] [default: 0.0.0.0] -I, &amp;ndash;auto-index Automatically generate index.html &amp;ndash;no-trash Delete file permanently instead of trashing it -p, &amp;ndash;port &amp;lt;PORT&amp;gt; Listen port [env: PORT=] [default: 8080] -r, &amp;ndash;refresh-token &amp;lt;REFRESH_TOKEN&amp;gt; Aliyun drive refresh token [env: REFRESH_TOKEN=] &amp;ndash;read-only Enable read only mode &amp;ndash;root &amp;lt;ROOT&amp;gt; Root directory path [default: /] -S, &amp;ndash;read-buffer-size &amp;lt;READ_BUFFER_SIZE&amp;gt; Read/download buffer size in bytes, defaults to 10MB [default: 10485760] &amp;ndash;strip-prefix &amp;lt;STRIP_PREFIX&amp;gt; Prefix to be stripped off when handling request [env: WEBDAV_STRIP_PREFIX=] &amp;ndash;tls-cert &amp;lt;TLS_CERT&amp;gt; TLS certificate file path [env: TLS_CERT=] &amp;ndash;tls-key &amp;lt;TLS_KEY&amp;gt; TLS private key file path [env: TLS_KEY=] -U, &amp;ndash;auth-user &amp;lt;AUTH_USER&amp;gt; WebDAV authentication username [env: WEBDAV_AUTH_USER=] -V, &amp;ndash;version Print version information -w, &amp;ndash;workdir &amp;lt;WORKDIR&amp;gt; Working directory, refresh_token will be stored in there if specified -W, &amp;ndash;auth-password &amp;lt;AUTH_PASSWORD&amp;gt; WebDAV authentication password [env: WEBDAV_AUTH_PASSWORD=]'><title>使用阿里云盘WebDAV协议搭建kodi影视中心</title>
 
 <link rel='canonical' href='https://example.com/aliyundrive-webdav-kodi/'>
 
@@ -30,19 +20,9 @@ Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在�
 博主的树莓派已经提前安装好了Kodi，只需要配置阿里云盘在局域网的WebDAV即可。博主打算把这个项目运行在树莓派上，因此在Releases下载已经编译好的二进制文件，ArmV7架构。
 解压后给予相应权限。
 程序的命令行用法。
-获取refresh_token 随后我们需要到阿里云盘网页端获取自己账户的refresh_token。
-浏览器登录阿里云盘后，在控制台输入JSON.parse(localStorage.token).refresh_token
-即可获得当前账户的refresh_token。
-我们也可以手动获取refresh_token。
-登录阿里云盘后，可以在开发者工具 -&amp;gt; Application -&amp;gt; Local Storage 中的 token 字段中找到。
-开始运行 使用ssh连接至树莓派，在二进制文件同一目录下输入指令。
-将&amp;lt;REFRESH_TOKEN&amp;gt;字段替换为刚刚获取的refresh token即可。运行后如图所示。
-这时WebDAV服务就已经在本地局域网运行，局域网内设备使用 设备的局域网IP:8080 即可连接对应的WebDAV服务器。在Windows下使用RaiDrive等软件可以将其挂载至文件资源管理器。
-Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在“视频”选项卡点击“添加视频”选项。
-点击左侧的浏览按钮。
-点击添加网络位置。
-我们选择协议“WebDAV服务器（HTTP）”，服务器地址填写运行上述项目的局域网IP，端口为8080，用户名和密码不需要填写，远程路径自定义即可。设置完成后点击确定。
-完成上述操作后一路确定，我们就可以在kodi中访问远程目录的视频了。但此时视频并不会显示电影名称 海报等元素，只是以视频的形式呈现。下一篇文章会解决这一问题'>
+$ aliyundrive-webdav &amp;ndash;help aliyundrive-webdav 1.3.3
+USAGE: aliyundrive-webdav [OPTIONS]
+OPTIONS: &amp;ndash;cache-size &amp;lt;CACHE_SIZE&amp;gt; Directory entries cache size [default: 1000] &amp;ndash;cache-ttl &amp;lt;CACHE_TTL&amp;gt; Directory entries cache expiration time in seconds [default: 600] &amp;ndash;debug Enable debug log &amp;ndash;domain-id &amp;lt;DOMAIN_ID&amp;gt; Aliyun PDS domain id -h, &amp;ndash;help Print help information &amp;ndash;host &amp;lt;HOST&amp;gt; Listen host [env: HOST=] [default: 0.0.0.0] -I, &amp;ndash;auto-index Automatically generate index.html &amp;ndash;no-trash Delete file permanently instead of trashing it -p, &amp;ndash;port &amp;lt;PORT&amp;gt; Listen port [env: PORT=] [default: 8080] -r, &amp;ndash;refresh-token &amp;lt;REFRESH_TOKEN&amp;gt; Aliyun drive refresh token [env: REFRESH_TOKEN=] &amp;ndash;read-only Enable read only mode &amp;ndash;root &amp;lt;ROOT&amp;gt; Root directory path [default: /] -S, &amp;ndash;read-buffer-size &amp;lt;READ_BUFFER_SIZE&amp;gt; Read/download buffer size in bytes, defaults to 10MB [default: 10485760] &amp;ndash;strip-prefix &amp;lt;STRIP_PREFIX&amp;gt; Prefix to be stripped off when handling request [env: WEBDAV_STRIP_PREFIX=] &amp;ndash;tls-cert &amp;lt;TLS_CERT&amp;gt; TLS certificate file path [env: TLS_CERT=] &amp;ndash;tls-key &amp;lt;TLS_KEY&amp;gt; TLS private key file path [env: TLS_KEY=] -U, &amp;ndash;auth-user &amp;lt;AUTH_USER&amp;gt; WebDAV authentication username [env: WEBDAV_AUTH_USER=] -V, &amp;ndash;version Print version information -w, &amp;ndash;workdir &amp;lt;WORKDIR&amp;gt; Working directory, refresh_token will be stored in there if specified -W, &amp;ndash;auth-password &amp;lt;AUTH_PASSWORD&amp;gt; WebDAV authentication password [env: WEBDAV_AUTH_PASSWORD=]'>
 <meta property='og:url' content='https://example.com/aliyundrive-webdav-kodi/'>
 <meta property='og:site_name' content='CaCl2&#39;s Space'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Kodi' /><meta property='article:tag' content='影视中心' /><meta property='article:tag' content='树莓派' /><meta property='article:tag' content='网盘' /><meta property='article:published_time' content='2022-05-25T06:50:59&#43;00:00'/><meta property='article:modified_time' content='2022-05-25T06:50:59&#43;00:00'/>
@@ -53,19 +33,9 @@ Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在�
 博主的树莓派已经提前安装好了Kodi，只需要配置阿里云盘在局域网的WebDAV即可。博主打算把这个项目运行在树莓派上，因此在Releases下载已经编译好的二进制文件，ArmV7架构。
 解压后给予相应权限。
 程序的命令行用法。
-获取refresh_token 随后我们需要到阿里云盘网页端获取自己账户的refresh_token。
-浏览器登录阿里云盘后，在控制台输入JSON.parse(localStorage.token).refresh_token
-即可获得当前账户的refresh_token。
-我们也可以手动获取refresh_token。
-登录阿里云盘后，可以在开发者工具 -&amp;gt; Application -&amp;gt; Local Storage 中的 token 字段中找到。
-开始运行 使用ssh连接至树莓派，在二进制文件同一目录下输入指令。
-将&amp;lt;REFRESH_TOKEN&amp;gt;字段替换为刚刚获取的refresh token即可。运行后如图所示。
-这时WebDAV服务就已经在本地局域网运行，局域网内设备使用 设备的局域网IP:8080 即可连接对应的WebDAV服务器。在Windows下使用RaiDrive等软件可以将其挂载至文件资源管理器。
-Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在“视频”选项卡点击“添加视频”选项。
-点击左侧的浏览按钮。
-点击添加网络位置。
-我们选择协议“WebDAV服务器（HTTP）”，服务器地址填写运行上述项目的局域网IP，端口为8080，用户名和密码不需要填写，远程路径自定义即可。设置完成后点击确定。
-完成上述操作后一路确定，我们就可以在kodi中访问远程目录的视频了。但此时视频并不会显示电影名称 海报等元素，只是以视频的形式呈现。下一篇文章会解决这一问题">
+$ aliyundrive-webdav &amp;ndash;help aliyundrive-webdav 1.3.3
+USAGE: aliyundrive-webdav [OPTIONS]
+OPTIONS: &amp;ndash;cache-size &amp;lt;CACHE_SIZE&amp;gt; Directory entries cache size [default: 1000] &amp;ndash;cache-ttl &amp;lt;CACHE_TTL&amp;gt; Directory entries cache expiration time in seconds [default: 600] &amp;ndash;debug Enable debug log &amp;ndash;domain-id &amp;lt;DOMAIN_ID&amp;gt; Aliyun PDS domain id -h, &amp;ndash;help Print help information &amp;ndash;host &amp;lt;HOST&amp;gt; Listen host [env: HOST=] [default: 0.0.0.0] -I, &amp;ndash;auto-index Automatically generate index.html &amp;ndash;no-trash Delete file permanently instead of trashing it -p, &amp;ndash;port &amp;lt;PORT&amp;gt; Listen port [env: PORT=] [default: 8080] -r, &amp;ndash;refresh-token &amp;lt;REFRESH_TOKEN&amp;gt; Aliyun drive refresh token [env: REFRESH_TOKEN=] &amp;ndash;read-only Enable read only mode &amp;ndash;root &amp;lt;ROOT&amp;gt; Root directory path [default: /] -S, &amp;ndash;read-buffer-size &amp;lt;READ_BUFFER_SIZE&amp;gt; Read/download buffer size in bytes, defaults to 10MB [default: 10485760] &amp;ndash;strip-prefix &amp;lt;STRIP_PREFIX&amp;gt; Prefix to be stripped off when handling request [env: WEBDAV_STRIP_PREFIX=] &amp;ndash;tls-cert &amp;lt;TLS_CERT&amp;gt; TLS certificate file path [env: TLS_CERT=] &amp;ndash;tls-key &amp;lt;TLS_KEY&amp;gt; TLS private key file path [env: TLS_KEY=] -U, &amp;ndash;auth-user &amp;lt;AUTH_USER&amp;gt; WebDAV authentication username [env: WEBDAV_AUTH_USER=] -V, &amp;ndash;version Print version information -w, &amp;ndash;workdir &amp;lt;WORKDIR&amp;gt; Working directory, refresh_token will be stored in there if specified -W, &amp;ndash;auth-password &amp;lt;AUTH_PASSWORD&amp;gt; WebDAV authentication password [env: WEBDAV_AUTH_PASSWORD=]">
     <link rel="shortcut icon" href="img/favicon.ico" />
 
     </head>
@@ -394,8 +364,31 @@ Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在�
 <!-- raw HTML omitted -->
 <!-- raw HTML omitted -->
 <p>程序的命令行用法。</p>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
+<p>$ aliyundrive-webdav &ndash;help
+aliyundrive-webdav 1.3.3</p>
+<p>USAGE:
+aliyundrive-webdav [OPTIONS]</p>
+<p>OPTIONS:
+&ndash;cache-size &lt;CACHE_SIZE&gt;                Directory entries cache size [default: 1000]
+&ndash;cache-ttl &lt;CACHE_TTL&gt;                  Directory entries cache expiration time in seconds [default: 600]
+&ndash;debug                                  Enable debug log
+&ndash;domain-id &lt;DOMAIN_ID&gt;                  Aliyun PDS domain id
+-h, &ndash;help                                   Print help information
+&ndash;host &lt;HOST&gt;                            Listen host [env: HOST=] [default: 0.0.0.0]
+-I, &ndash;auto-index                             Automatically generate index.html
+&ndash;no-trash                               Delete file permanently instead of trashing it
+-p, &ndash;port &lt;PORT&gt;                            Listen port [env: PORT=] [default: 8080]
+-r, &ndash;refresh-token &lt;REFRESH_TOKEN&gt;          Aliyun drive refresh token [env: REFRESH_TOKEN=]
+&ndash;read-only                              Enable read only mode
+&ndash;root &lt;ROOT&gt;                            Root directory path [default: /]
+-S, &ndash;read-buffer-size &lt;READ_BUFFER_SIZE&gt;    Read/download buffer size in bytes, defaults to 10MB [default: 10485760]
+&ndash;strip-prefix &lt;STRIP_PREFIX&gt;            Prefix to be stripped off when handling request [env: WEBDAV_STRIP_PREFIX=]
+&ndash;tls-cert &lt;TLS_CERT&gt;                    TLS certificate file path [env: TLS_CERT=]
+&ndash;tls-key &lt;TLS_KEY&gt;                      TLS private key file path [env: TLS_KEY=]
+-U, &ndash;auth-user &lt;AUTH_USER&gt;                  WebDAV authentication username [env: WEBDAV_AUTH_USER=]
+-V, &ndash;version                                Print version information
+-w, &ndash;workdir &lt;WORKDIR&gt;                      Working directory, refresh_token will be stored in there if specified
+-W, &ndash;auth-password &lt;AUTH_PASSWORD&gt;          WebDAV authentication password [env: WEBDAV_AUTH_PASSWORD=]<!-- raw HTML omitted --><!-- raw HTML omitted --></p>
 <h3 id="获取refresh_token">获取refresh_token</h3>
 <p>随后我们需要到阿里云盘网页端获取自己账户的refresh_token。</p>
 <p>浏览器登录<a class="link" href="https://www.aliyundrive.com/drive/"  target="_blank" rel="noopener"
@@ -539,6 +532,25 @@ Kodi的连接 这时我们将搭载kodi的设备连接至同一局域网，在�
      
     
         
+    <script src='//unpkg.com/@waline/client@v2/dist/waline.js'></script>
+<link href='//unpkg.com/@waline/client@v2/dist/waline.css' rel='stylesheet'/>
+<div id="waline" class="waline-container"></div>
+<style>
+    .waline-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+        --waline-font-size: var(--article-font-size);
+    }
+    .waline-container .wl-count {
+        color: var(--card-text-color-main);
+    }
+</style><script>
+    
+    Waline.init({"dark":"html[data-scheme=\"dark\"]","el":"#waline","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo"],"lang":"zh-CN","locale":{"admin":"Admin","placeholder":null},"requiredMeta":["name","email","url"],"serverURL":"https://comment.cacl2.xyz/"});
+</script>
+
     
 
     <footer class="site-footer">

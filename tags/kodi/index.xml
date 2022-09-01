@@ -32,8 +32,31 @@
 &lt;!-- raw HTML omitted --&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;程序的命令行用法。&lt;/p&gt;
-&lt;!-- raw HTML omitted --&gt;
-&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;$ aliyundrive-webdav &amp;ndash;help
+aliyundrive-webdav 1.3.3&lt;/p&gt;
+&lt;p&gt;USAGE:
+aliyundrive-webdav [OPTIONS]&lt;/p&gt;
+&lt;p&gt;OPTIONS:
+&amp;ndash;cache-size &amp;lt;CACHE_SIZE&amp;gt;                Directory entries cache size [default: 1000]
+&amp;ndash;cache-ttl &amp;lt;CACHE_TTL&amp;gt;                  Directory entries cache expiration time in seconds [default: 600]
+&amp;ndash;debug                                  Enable debug log
+&amp;ndash;domain-id &amp;lt;DOMAIN_ID&amp;gt;                  Aliyun PDS domain id
+-h, &amp;ndash;help                                   Print help information
+&amp;ndash;host &amp;lt;HOST&amp;gt;                            Listen host [env: HOST=] [default: 0.0.0.0]
+-I, &amp;ndash;auto-index                             Automatically generate index.html
+&amp;ndash;no-trash                               Delete file permanently instead of trashing it
+-p, &amp;ndash;port &amp;lt;PORT&amp;gt;                            Listen port [env: PORT=] [default: 8080]
+-r, &amp;ndash;refresh-token &amp;lt;REFRESH_TOKEN&amp;gt;          Aliyun drive refresh token [env: REFRESH_TOKEN=]
+&amp;ndash;read-only                              Enable read only mode
+&amp;ndash;root &amp;lt;ROOT&amp;gt;                            Root directory path [default: /]
+-S, &amp;ndash;read-buffer-size &amp;lt;READ_BUFFER_SIZE&amp;gt;    Read/download buffer size in bytes, defaults to 10MB [default: 10485760]
+&amp;ndash;strip-prefix &amp;lt;STRIP_PREFIX&amp;gt;            Prefix to be stripped off when handling request [env: WEBDAV_STRIP_PREFIX=]
+&amp;ndash;tls-cert &amp;lt;TLS_CERT&amp;gt;                    TLS certificate file path [env: TLS_CERT=]
+&amp;ndash;tls-key &amp;lt;TLS_KEY&amp;gt;                      TLS private key file path [env: TLS_KEY=]
+-U, &amp;ndash;auth-user &amp;lt;AUTH_USER&amp;gt;                  WebDAV authentication username [env: WEBDAV_AUTH_USER=]
+-V, &amp;ndash;version                                Print version information
+-w, &amp;ndash;workdir &amp;lt;WORKDIR&amp;gt;                      Working directory, refresh_token will be stored in there if specified
+-W, &amp;ndash;auth-password &amp;lt;AUTH_PASSWORD&amp;gt;          WebDAV authentication password [env: WEBDAV_AUTH_PASSWORD=]&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;h3 id=&#34;获取refresh_token&#34;&gt;获取refresh_token&lt;/h3&gt;
 &lt;p&gt;随后我们需要到阿里云盘网页端获取自己账户的refresh_token。&lt;/p&gt;
 &lt;p&gt;浏览器登录&lt;a class=&#34;link&#34; href=&#34;https://www.aliyundrive.com/drive/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
